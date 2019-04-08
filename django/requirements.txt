@@ -1,0 +1,15 @@
+pytz==2018.7
+Faker
+Django==2.2
+Pillow
+gunicorn==19.9.0
+mysqlclient==1.3.13
+django-filter
+django-ckeditor
+django-imagekit
+django-tabbed-admin
+django-cors-headers
+djangorestframework
+django-admin-interface
+djangorestframework-jsonapi
+djangorestframework_simplejwt

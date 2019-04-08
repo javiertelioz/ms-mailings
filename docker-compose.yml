@@ -1,0 +1,37 @@
+version: "3"
+
+services:
+  # Django
+  app:
+    build: .
+    volumes:
+      - ./django/:/src/
+      - static-files:/src/static-files
+    env_file:
+      - django.env
+    ports:
+      - "2000:2000"
+    command:
+      sh -c "sh /src/tools/start.sh && python manage.py runserver 0.0.0.0:2000"
+#	  	sh -c "sh /src/tools/start.sh && gunicorn --workers=4 --bind=0.0.0.0:2000 mysite.wsgi:application"
+
+  mysql:
+    image: mysql:5.7
+    env_file:
+      - django.env
+    volumes:
+      - mysql:/var/lib/mysql
+
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "8081:8081"
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+      - static-files:/src/static-files
+    depends_on:
+      - app
+
+volumes:
+  mysql:
+  static-files:

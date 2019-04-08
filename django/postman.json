@@ -1,0 +1,40 @@
+curl -X POST -H "Content-Type: application/json" -d '{"username": "admin","password": "yourpassword"}'  http://localhost/api/token/
+{
+	"data": {
+		"attributes": {
+			"username": "admin",
+			"password": "yourpassword"
+		}
+	}
+}
+
+
+curl -X POST http://localhost/api/token/ -H 'Content-Type: application/vnd.api+json' -d '{ "data": { "type": "TokenObtainPairView", "attributes": { "username": "admin", "password": "yourpassword"}}}'
+
+
+curl -H 'Content-Type: application/vnd.api+json' http://localhost/api/users/
+
+
+
+
+curl -X POST \
+  http://localhost/api/token/ \
+  -H 'Content-Type: application/vnd.api+json' \
+  -H 'Postman-Token: 4361318c-c2af-4751-95b8-e46affbad0ab' \
+  -H 'cache-control: no-cache' \
+  -d '{
+    "data": {
+        "type": "TokenObtainPairView",
+        "attributes": {
+            "username": "admin",
+            "password": "yourpassword"
+        }
+    }
+}'
+
+
+curl -X GET \
+  http://localhost/api/users \
+  -H 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTQ2NDcxMTU0LCJqdGkiOiJhYjg4Y2U2YWQ2MTE0MzZkOTlhMDU2NzFhYmNmYzNkMiIsInVzZXJfaWQiOjF9.X6UgVvxGgdQ6k0LECcB52FUCR4nirG0dxdVgAeqpPkc' \
+  -H 'Postman-Token: 750cd70d-e76a-4e02-a566-8b91c347d1a1' \
+  -H 'cache-control: no-cache'
