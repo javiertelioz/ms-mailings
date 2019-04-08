@@ -42,6 +42,7 @@ INSTALLED_APPS = [
 
 	# Local Apps (Your project's apps)
 	#'api.apps.ApiConfig',
+    'mailings.apps.MailingsConfig',  #
 ]
 
 MIDDLEWARE = [

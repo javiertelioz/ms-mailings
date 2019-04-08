@@ -1,8 +1,8 @@
-# Siclo Stack v2
+# Mailings Stack
 
 Django 2.2 + gunicorn, NGINX, Mysql, Angular 7, Docker Application | Ready-To-Deploy
 
-Getting a Django 2.1 app up in no time. In this project, gunicorn is used as a WSGI. NGINX is used as a reverse proxy server.
+Getting a Django 2.2 app up in no time. In this project, gunicorn is used as a WSGI. NGINX is used as a reverse proxy server.
 
 ### Requirements
 
@@ -132,4 +132,3 @@ curl -X GET http://localhost/api/users -H 'Authorization: Bearer <Token>
 | Python 3.5| [https://docs.python.org/3.5](https://docs.python.org/3.5) |
 | MySQL 	| [https://www.mysql.com/](https://www.mysql.com/) |
 | Django 	| [https://docs.djangoproject.com/en/2.1/](https://docs.djangoproject.com/en/2.1/) |
-| Angular 7 	| [https://angular.io/guide/releases](https://angular.io/guide/releases) |
