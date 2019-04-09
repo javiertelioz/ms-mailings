@@ -10,7 +10,7 @@ cd /src
 
 echo "==> Django setup, Start"
 
-if [ "$PRODUCTION" == "true" ]; then
+if [ "$PRODUCTION" == "true" ] || [ "$PRODUCTION" == "True" ] ; then
     echo "==> Environment: Production"
     # Django: migrate
     #
@@ -32,7 +32,7 @@ else
     echo "==> Environment: Developer"
 
     # Django: makemigrations
-    # https://docs.djangoproject.com/en/2.1/ref/django-admin/#makemigrations
+    # https://docs.djangoproject.com/en/2.2/ref/django-admin/#makemigrations
     echo "==> Django setup, executing: makemigrations"
     python manage.py makemigrations
 
@@ -45,12 +45,12 @@ else
     python manage.py migrate --fake-initial
 
     # Django: collectstatic
-    # https://docs.djangoproject.com/en/2.1/ref/contrib/staticfiles/#django-admin-collectstatic
+    # https://docs.djangoproject.com/en/2.2/ref/contrib/staticfiles/#django-admin-collectstatic
     echo "==> Django setup, executing: collectstatic"
     python manage.py collectstatic --noinput -v 3
 
     # Django: createsuperuser
-    # https://docs.djangoproject.com/en/2.1/ref/django-admin/#createsuperuser
+    # https://docs.djangoproject.com/en/2.2/ref/django-admin/#createsuperuser
     # see enviroment file django.env
     echo "==> Django setup, executing: createsuperuser"
     echo "from django.contrib.auth import get_user_model;
@@ -63,7 +63,8 @@ else:
     print('Super user created...')" | python manage.py shell
 fi
 
-if [ "$INSTALL_ADDITIONAL_THEMES" == "true" ]; then
+if [ "$INSTALL_ADDITIONAL_THEMES" == "true" ] || [ "$INSTALL_ADDITIONAL_THEMES" == "True" ]; then
+    echo "==> Django setup, executing: install custom theme"
     python manage.py loaddata admin_interface_theme_bootstrap.json
     python manage.py loaddata admin_interface_theme_foundation.json
 fi

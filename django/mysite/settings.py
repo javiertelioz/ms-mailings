@@ -39,6 +39,7 @@ INSTALLED_APPS = [
 	'corsheaders',
 	'django_filters',
 	'rest_framework',
+    'ckeditor',
 
 	# Local Apps (Your project's apps)
 	#'api.apps.ApiConfig',
@@ -204,6 +205,38 @@ CORS_ORIGIN_WHITELIST = (
 	'127.0.0.1:9000',
 	'localhost'
 )
+
+# CKEDITOR
+# https://django-ckeditor.readthedocs.io/en/latest/
+CKEDITOR_UPLOAD_PATH = "uploads/"
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'Custom',
+        'toolbar_Custom': [
+            ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', 'Language'],
+            ['Bold', 'Italic', 'Underline'],
+            ['Styles', 'Format', 'Font', 'FontSize', 'TextColor', 'BGColor'],
+            ['Link', 'Unlink'],
+            ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo'],
+            ['Image', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak', 'Iframe'],
+            ['Find', 'Replace', 'SelectAll'],
+            ['RemoveFormat', 'Source'],
+            ['Maximize', 'ShowBlocks'],
+        ],
+        'tabSpaces': 2,
+        'extraPlugins': ','.join([
+            'uploadimage', # the upload image feature
+            'autoembed',
+            'embedsemantic',
+            'autogrow',
+            'dialog',
+            'dialogui',
+            'elementspath'
+        ]),
+        'width': 850,
+        'height': 200,
+    },
+}
 
 # Faker
 # https://faker.readthedocs.io/en/master/index.html

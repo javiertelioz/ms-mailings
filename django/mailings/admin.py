@@ -5,9 +5,7 @@ from django.utils.translation import ugettext_lazy as _
 from .models import (
     Brand,
     Template,
-    Gallery,
-    Header,
-    Footer,
+    Gallery
 )
 
 class BrandAdmin(admin.ModelAdmin):
@@ -28,7 +26,7 @@ class TemplateAdmin(admin.ModelAdmin):
     list_per_page = 30
 
     list_display = ['name', 'description', 'status', 'created_at', 'updated_at']
-    list_filter = ['status', 'created_at', 'updated_at']
+    list_filter = ['name', 'status', 'created_at', 'updated_at']
     inlines = [ GalleryInline ]
 
 admin.site.register(Brand, BrandAdmin)
