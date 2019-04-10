@@ -117,6 +117,10 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = os.getenv('LANGUAGE_CODE', 'en-us')
 
+LOCALE_PATHS = (
+    os.path.join(BASE_DIR, 'locale'),
+)
+
 TIME_ZONE = os.getenv('TIME_ZONE', 'UTC')
 
 USE_I18N = ast.literal_eval(os.getenv('USE_I18N', 'True'))
@@ -228,6 +232,9 @@ CORS_ORIGIN_WHITELIST = (
 # CKEDITOR
 # https://django-ckeditor.readthedocs.io/en/latest/
 CKEDITOR_UPLOAD_PATH = "uploads/"
+CKEDITOR_RESTRICT_BY_USER = True
+#CKEDITOR_BROWSE_SHOW_DIRS = True
+#CKEDITOR_RESTRICT_BY_DATE = True
 CKEDITOR_CONFIGS = {
     'default': {
         'toolbar': 'Custom',
@@ -240,7 +247,7 @@ CKEDITOR_CONFIGS = {
             ['Image', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak', 'Iframe'],
             ['Find', 'Replace', 'SelectAll'],
             ['RemoveFormat', 'Source'],
-            ['Maximize', 'ShowBlocks'],
+            ['Maximize', 'ShowBlocks', 'Preview'],
         ],
         'tabSpaces': 2,
         'extraPlugins': ','.join([
@@ -250,7 +257,12 @@ CKEDITOR_CONFIGS = {
             'autogrow',
             'dialog',
             'dialogui',
-            'elementspath'
+            'tableresize',
+            'uploadwidget',
+            'elementspath',
+            'preview',
+            'templates',
+            'ajax',
         ]),
         'width': 850,
         'height': 200,

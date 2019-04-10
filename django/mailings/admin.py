@@ -25,7 +25,8 @@ class TemplateAdmin(admin.ModelAdmin):
     save_on_top = True
     list_per_page = 30
 
-    list_display = ['name', 'description', 'status', 'created_at', 'updated_at']
+    search_fields = ['name', 'subject', 'description']
+    list_display = ['name', 'subject', 'description', 'status', 'brand']
     list_filter = ['name', 'status', 'created_at', 'updated_at']
     inlines = [ GalleryInline ]
 

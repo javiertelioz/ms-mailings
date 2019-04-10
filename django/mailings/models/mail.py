@@ -5,55 +5,72 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.template import Template, Context, engines
 from django.utils.translation import gettext_lazy as _
 
-from mailings.models import Template as T
+from mailings.models import Template as Tpl
 
 class Mail():
 
-    """docstring for Mail"""
-    def __init__(self, template_id_or_name, params= {}):
+    _template_id_or_name = None
+    _params = None
+    _template = None
 
-        self.template_id_or_name = template_id_or_name
-        self.context = params
+    def __init__(self, template_id_or_name, params = {}):
+
+        self._template_id_or_name = template_id_or_name
+        self._params = params
 
         self.django_engine = engines['django']
 
-        self.__get_template()
+        self.__load_template()
 
-    def send(self, to, subject = ""):
+    def send(self, to):
 
         try:
-            email = EmailMessage( subject, self.__parse_vars(), settings.EMAIL_HOST_USER, to )
+
+            email = EmailMessage(
+                self.__get_message_subject(),
+                self.__get_message_body(),
+                self.__get_message_email_from(),
+                to
+            )
+
             email.content_subtype = "html"
             email.send()
 
         except Exception as e:
-            print("Error to send mail: %s" % str(e))
+            raise ValueError(_("Error to send mail: %s" % str(e)))
 
-    def __get_template(self):
+    def __load_template(self):
 
         try:
-            if str(self.template_id_or_name).isdigit():
-                self.template = T.objects.get(pk=self.template_id_or_name)
+            if str(self._template_id_or_name).isdigit():
+                self._template = Tpl.objects.get(pk=self._template_id_or_name, status=True)
             else:
-                self.template = T.objects.get(name=self.template_id_or_name)
+                self._template = Tpl.objects.get(name=self._template_id_or_name, status=True)
 
         except ObjectDoesNotExist:
-            print('There was a error to get template "%s"' % self.template_id_or_name)
-            return False
+            raise ValueError(_('There was an error getting template: "%s"' % self._template_id_or_name))
 
-    def __parse_vars(self):
+    def __get_message_email_from(self):
 
-        self.__get_template()
+        return self._template.email_from
 
-        html = "{}{}{}".format(
-            self.template.brand.header_content,
-            self.template.content,
-            self.template.brand.footer_content
+    def __get_message_subject(self):
+
+        return self.__parse_vars(self._template.subject)
+
+    def __get_message_body(self):
+
+        return self.__parse_vars(
+            self._template.brand.header_content +
+            self._template.content +
+            self._template.brand.footer_content
         )
 
-        self.template = self.django_engine.from_string(html)
+    def __parse_vars(self, html):
 
-        return self.template.render(self.context)
+        template_str = self.django_engine.from_string(html)
+
+        return template_str.render(self._params)
 
 
 # subject = 'Thank you for registering to our site'
