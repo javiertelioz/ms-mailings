@@ -36,10 +36,11 @@ INSTALLED_APPS = [
 	'django.contrib.sites',
 
 	# Third-Party Apps
+    #'anymail',
+    'ckeditor',
 	'corsheaders',
 	'django_filters',
 	'rest_framework',
-    'ckeditor',
 
 	# Local Apps (Your project's apps)
 	#'api.apps.ApiConfig',
@@ -142,6 +143,24 @@ SITE_ID = 1
 # Custom User Model
 # https://docs.djangoproject.com/en/2.2/topics/auth/customizing/#substituting-a-custom-user-model
 #AUTH_USER_MODEL = 'customer.User'
+
+# ANYMAIL
+# https://github.com/anymail/django-anymail
+
+#ANYMAIL = {
+#    "MAILGUN_API_KEY": "<your Mailgun key>",
+#    "MAILGUN_SENDER_DOMAIN": 'mg.example.com',  # your Mailgun domain, if needed
+#}
+#EMAIL_BACKEND = "anymail.backends.mailgun.EmailBackend"  # or sendgrid.EmailBackend, or...
+#DEFAULT_FROM_EMAIL = "you@example.com"  # if you don't already have this in settings
+#SERVER_EMAIL = "your-server@example.com"  # ditto (default from-email for Django errors)
+
+EMAIL_BACKEND = os.getenv('EMAIL_BACKEND', 'django.core.mail.backends.smtp.EmailBackend')
+EMAIL_HOST = os.getenv('EMAIL_HOST', 'smtp.gmail.com')
+EMAIL_USE_TLS = ast.literal_eval(os.getenv('EMAIL_USE_TLS', 'True'))
+EMAIL_PORT = os.getenv('EMAIL_PORT', 587)
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 
 # REST_FRAMEWORK
 # https://www.django-rest-framework.org/
