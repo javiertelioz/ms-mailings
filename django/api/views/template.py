@@ -14,7 +14,7 @@ class TemplateViewSet(viewsets.ModelViewSet):
     permission_classes = (IsAuthenticatedOrReadOnly,)
     #allowed_methods = ['GET', 'OPTIONS']
 
-    queryset = Template.objects.filter(status=True)
+    queryset = Template.objects.filter()
     serializer_class = TemplateSerializer
 
     filter_backends = (
@@ -25,11 +25,13 @@ class TemplateViewSet(viewsets.ModelViewSet):
     )
 
     filterset_fields = {
-        'id': ('in', ),
+        'status': ('contains', ),
         'name': ('iexact', 'contains'),
         'description': ('iexact', 'contains'),
+        'subject': ('iexact', 'contains'),
+        'content': ('iexact', 'contains'),
     }
 
-    search_fields = ('id', 'name',)
-    ordering = ('-id',)
-    ordering_fields = ('id', 'name')
+    search_fields = ('name',)
+    #ordering = ('-id',)
+    ordering_fields = ('name',)

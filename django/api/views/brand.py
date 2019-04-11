@@ -27,7 +27,7 @@ class BrandViewSet(viewsets.ModelViewSet):
     filterset_fields = {
         'id': ('in', ),
         'name': ('iexact', 'contains'),
-        'status': ('iexact', 'contains'),
+        'status': ('iexact',),
     }
 
     search_fields = ('id', 'name',)

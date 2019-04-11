@@ -5,8 +5,12 @@ from django.utils.translation import ugettext_lazy as _
 from .models import (
     Brand,
     Template,
-    Gallery
+    Mailings
 )
+
+class MailingsInline(admin.TabularInline):
+    model = Mailings
+    extra = 0
 
 class BrandAdmin(admin.ModelAdmin):
 
@@ -15,10 +19,8 @@ class BrandAdmin(admin.ModelAdmin):
 
     list_display = ['name', 'status', 'created_at', 'updated_at']
     list_filter = ['name', 'status', 'created_at', 'updated_at']
+    inlines = [ MailingsInline ]
 
-class GalleryInline(admin.TabularInline):
-    model = Gallery
-    extra = 0
 
 class TemplateAdmin(admin.ModelAdmin):
 
@@ -28,7 +30,6 @@ class TemplateAdmin(admin.ModelAdmin):
     search_fields = ['name', 'subject', 'description']
     list_display = ['name', 'subject', 'description', 'status', 'brand']
     list_filter = ['name', 'status', 'created_at', 'updated_at']
-    inlines = [ GalleryInline ]
 
 admin.site.register(Brand, BrandAdmin)
 admin.site.register(Template, TemplateAdmin)

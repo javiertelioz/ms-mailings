@@ -22,7 +22,7 @@ class TemplateSerializer(serializers.ModelSerializer):
             'subject',
             'content',
             'brand',
-            'email_from',
+            #'email_from',
             'status',
             'created_at',
             #'updated_at',
