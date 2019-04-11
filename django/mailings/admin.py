@@ -5,7 +5,8 @@ from django.utils.translation import ugettext_lazy as _
 from .models import (
     Brand,
     Template,
-    Mailings
+    Mailings,
+    Mail,
 )
 
 class MailingsInline(admin.TabularInline):
@@ -31,5 +32,25 @@ class TemplateAdmin(admin.ModelAdmin):
     list_display = ['name', 'subject', 'description', 'status', 'brand']
     list_filter = ['name', 'status', 'created_at', 'updated_at']
 
+class MailAdmin(admin.ModelAdmin):
+
+    save_on_top = False
+    list_per_page = 30
+
+    list_display = ['id', 'template', 'created_at', 'updated_at']
+    list_filter = ['template', 'created_at', 'updated_at']
+
+    fieldsets = [
+        (_("General"), {
+            'fields': ['template']
+        }),
+        (_("Request Params"), {
+            'fields': ['detail_json_formatted']
+        }),
+    ]
+
+    readonly_fields = ('template', 'detail_json_formatted',)
+
 admin.site.register(Brand, BrandAdmin)
 admin.site.register(Template, TemplateAdmin)
+admin.site.register(Mail, MailAdmin)
