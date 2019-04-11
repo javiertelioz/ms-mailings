@@ -5,7 +5,7 @@ from django.utils.translation import gettext_lazy as _
 
 from ckeditor_uploader.fields import RichTextUploadingField
 
-from .brand import Brand
+from mailings.models import Brand, Mailings
 
 HTML_HELP_TXT = """
     Content of the body (html), variables or
@@ -19,7 +19,7 @@ class Template(models.Model):
     subject = models.CharField(verbose_name=_('subject'), max_length=255, db_index=True)
     content = RichTextUploadingField(verbose_name=_('content'), help_text=_(HTML_HELP_TXT))
     brand = models.ForeignKey(Brand, related_name='brand', on_delete=models.CASCADE)
-    email_from = models.EmailField(verbose_name=_('email from'), help_text=_('ej. soport@mybrand.com'))
+    mailing = models.OneToOneField(Mailings, on_delete=models.CASCADE, primary_key=True)
     status = models.BooleanField(verbose_name=_('status'), default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

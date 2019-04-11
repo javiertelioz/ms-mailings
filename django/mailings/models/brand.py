@@ -24,6 +24,10 @@ class Brand(models.Model):
     def __str__(self):
         return self.name
 
+    @property
+    def templates(self):
+        return self.brand.all()
+
     class Meta:
         app_label = "mailings"
         ordering = ('name', )
