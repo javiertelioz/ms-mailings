@@ -10,7 +10,6 @@ class BrandSerializer(serializers.ModelSerializer):
 
     included_serializers = {
         'templates': TemplateSerializer,
-    #    'branch_offices': BranchOfficeSerializer,
     }
 
     class Meta:
@@ -29,5 +28,3 @@ class BrandSerializer(serializers.ModelSerializer):
         read_only_fields = (
             'templates',
         )
-    #class JSONAPIMeta:
-        #included_resources = ['products']

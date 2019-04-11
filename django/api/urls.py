@@ -1,14 +1,9 @@
 from django.conf.urls import url, include
 from rest_framework import routers
-from rest_framework_simplejwt.views import (
-    TokenObtainPairView,
-    TokenRefreshView,
-)
+from rest_framework_swagger.views import get_swagger_view
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
-from .views import (
-    BrandViewSet,
-    TemplateViewSet,
-)
+from .views import BrandViewSet, TemplateViewSet
 
 router = routers.DefaultRouter(trailing_slash=False)
 
