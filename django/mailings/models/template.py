@@ -14,15 +14,15 @@ HTML_HELP_TXT = """
 # Create your models here.
 class Template(models.Model):
 
-    name = models.CharField(verbose_name=_('name'), max_length=150, unique=True, db_index=True)
-    description = models.CharField(verbose_name=_('description'), max_length=255, db_index=True)
-    subject = models.CharField(verbose_name=_('subject'), max_length=255, db_index=True)
-    content = RichTextUploadingField(verbose_name=_('content'), help_text=_(HTML_HELP_TXT))
-    brand = models.ForeignKey(Brand, related_name='brand', on_delete=models.CASCADE)
-    mailing = models.OneToOneField(Mailings, on_delete=models.CASCADE, primary_key=True)
-    status = models.BooleanField(verbose_name=_('status'), default=False)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+    name = models.CharField(verbose_name=_('Name'), max_length=150, unique=True, db_index=True)
+    description = models.CharField(verbose_name=_('Description'), max_length=255, db_index=True)
+    subject = models.CharField(verbose_name=_('Subject'), max_length=255, db_index=True)
+    content = RichTextUploadingField(verbose_name=_('Content'), help_text=_(HTML_HELP_TXT))
+    brand = models.ForeignKey(Brand, verbose_name=_('Brand'), related_name='brand', on_delete=models.CASCADE)
+    mailing = models.OneToOneField(Mailings, verbose_name=_('Mailing'), on_delete=models.CASCADE, primary_key=True)
+    status = models.BooleanField(verbose_name=_('Status'), default=False)
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Created At'))
+    updated_at = models.DateTimeField(auto_now=True, verbose_name=_('Updated At'))
 
     def __str__(self):
         return self.name
@@ -30,5 +30,5 @@ class Template(models.Model):
     class Meta:
         app_label = "mailings"
         ordering = ('name', )
-        verbose_name = _('template')
-        verbose_name_plural = _('templates')
+        verbose_name = _('Template')
+        verbose_name_plural = _('Templates')

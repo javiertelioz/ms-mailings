@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-10 05:31+0000\n"
+"POT-Creation-Date: 2019-04-11 18:21+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,21 +18,38 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#: mailings/apps.py:7 mailings/models/mailings.py:23
+msgid "Mailings"
+msgstr "Correos"
+
+#: mailings/models/brand.py:16 mailings/models/template.py:17
+msgid "Name"
+msgstr "Nombre"
+
+#: mailings/models/brand.py:17
+msgid "Logo"
+msgstr "Logo"
+
+#: mailings/models/brand.py:18 mailings/models/template.py:23
+msgid "Status"
+msgstr "Estatus"
+
 #: mailings/models/brand.py:19
 msgid "Header"
-msgstr "Encabezamiento"
+msgstr "Encabezado"
 
 #: mailings/models/brand.py:20
 msgid "Footer"
 msgstr "Pie de página"
 
-#: mailings/models/brand.py:30 mailings/models/brand.py:31
-msgid "brand"
+#: mailings/models/brand.py:34 mailings/models/mailings.py:11
+#: mailings/models/template.py:21
+msgid "Brand"
 msgstr "Marca"
 
-#: mailings/models/gallery.py:21 mailings/models/gallery.py:22
-msgid "gallery"
-msgstr "Galería"
+#: mailings/models/brand.py:35
+msgid "Brands"
+msgstr "Marcas"
 
 #: mailings/models/mail.py:40
 #, python-format
@@ -44,38 +61,46 @@ msgstr "Error al enviar el correo: %s"
 msgid "There was an error getting template: \"%s\""
 msgstr "Se produjo un error al obtener la plantilla: \"%s\""
 
-#: mailings/models/template.py:17
-msgid "name"
-msgstr "Nombre"
+#: mailings/models/mailings.py:12
+msgid "Sender Name"
+msgstr "Nombre del remitente"
 
-#: mailings/models/template.py:18
-msgid "description"
-msgstr "Descripción"
+#: mailings/models/mailings.py:13
+msgid "Email"
+msgstr "Correo electrónico"
 
-#: mailings/models/template.py:19
-msgid "subject"
-msgstr "Asunto"
-
-#: mailings/models/template.py:20
-msgid "content"
-msgstr "Contenido"
-
-#: mailings/models/template.py:22
-msgid "email from"
-msgstr "Correo electrónico de"
-
-#: mailings/models/template.py:22
+#: mailings/models/mailings.py:13
 msgid "eg. soport@mybrand.com"
 msgstr "ej. soport@mybrand.com"
 
-#: mailings/models/template.py:23
-msgid "status"
-msgstr "Estatus"
+#: mailings/models/mailings.py:22 mailings/models/template.py:22
+msgid "Mailing"
+msgstr "correo"
+
+#: mailings/models/template.py:18
+msgid "Description"
+msgstr "Descripción"
+
+#: mailings/models/template.py:19
+msgid "Subject"
+msgstr "Asunto"
+
+#: mailings/models/template.py:20
+msgid "Content"
+msgstr "Contenido"
+
+#: mailings/models/template.py:24
+msgid "Created At"
+msgstr "Fecha de creación"
+
+#: mailings/models/template.py:25
+msgid "Updated At"
+msgstr "Fecha de actualización"
 
 #: mailings/models/template.py:33
-msgid "template"
-msgstr "Plantilla"
+msgid "Template"
+msgstr "plantilla"
 
 #: mailings/models/template.py:34
-msgid "templates"
-msgstr "Plantillas"
+msgid "Templates"
+msgstr "plantillas"

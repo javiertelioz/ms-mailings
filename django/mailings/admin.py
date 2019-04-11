@@ -17,7 +17,7 @@ class BrandAdmin(admin.ModelAdmin):
     save_on_top = True
     list_per_page = 30
 
-    list_display = ['name', 'status', 'created_at', 'updated_at']
+    list_display = ['name', 'image_tag', 'status', 'created_at', 'updated_at']
     list_filter = ['name', 'status', 'created_at', 'updated_at']
     inlines = [ MailingsInline ]
 
