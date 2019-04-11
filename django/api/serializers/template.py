@@ -2,7 +2,6 @@ from rest_framework_json_api import serializers
 
 from mailings.models import Template
 
-#from .product import ProductSerializer
 class TemplateSerializer(serializers.ModelSerializer):
 
     class Meta:
