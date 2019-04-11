@@ -43,7 +43,7 @@ INSTALLED_APPS = [
 	'rest_framework',
 
 	# Local Apps (Your project's apps)
-	#'api.apps.ApiConfig',
+	'api.apps.ApiConfig',
     'mailings.apps.MailingsConfig',  #
 ]
 
