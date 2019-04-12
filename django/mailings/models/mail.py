@@ -17,6 +17,8 @@ from .template import Template
 class Mail(models.Model):
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    to = models.CharField(verbose_name=_('Sender To'), max_length=250, db_index=True)
+    status = models.BooleanField(verbose_name=_('It was sent'), default=False)
     template = models.ForeignKey(Template, verbose_name=_('Template'), on_delete=models.CASCADE)
     params = models.TextField(verbose_name=_('Request Params'))
     created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Created At'))
@@ -29,7 +31,7 @@ class Mail(models.Model):
         app_label = "mailings"
         verbose_name = _("Postal System")
         verbose_name_plural = _("Postal System")
-        ordering = ('id', )
+        ordering = ('-created_at', )
 
     def detail_json_formatted(self):
 
@@ -43,7 +45,7 @@ class Mail(models.Model):
          # include the style sheet
         #style = "<style>" + formatter.get_style_defs() + "</style><br/>"
         #return mark_safe(style + response)
-        return mark_safe('<textarea rows="15" cols="120">%s</textarea>' % data)
+        return mark_safe('<textarea rows="15" cols="120" readonly>%s</textarea>' % data)
 
     detail_json_formatted.short_description = 'Details Formatted'
     detail_json_formatted.allow_tags = True

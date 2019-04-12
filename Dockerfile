@@ -15,6 +15,7 @@ RUN apk add --update --upgrade --no-cache --virtual .build-deps\
     mariadb-dev \
     mysql-client \
     ca-certificates \
+    gettext \
     && pip install --upgrade pip
 
 RUN mkdir ${CONFIG_ROOT}

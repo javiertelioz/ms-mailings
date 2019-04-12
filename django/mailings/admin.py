@@ -37,19 +37,33 @@ class MailAdmin(admin.ModelAdmin):
     save_on_top = False
     list_per_page = 30
 
-    list_display = ['id', 'template', 'created_at', 'updated_at']
-    list_filter = ['template', 'created_at', 'updated_at']
+    search_fields = ['id', 'to', 'template__name']
+    list_display = ['id', 'to', 'template', 'status', 'created_at' ]
+    list_filter = ['template', 'status', 'created_at', 'updated_at']
 
     fieldsets = [
         (_("General"), {
-            'fields': ['template']
+            'fields': [
+                ('to', 'status'),
+                ('template', 'created_at'),
+            ]
         }),
         (_("Request Params"), {
             'fields': ['detail_json_formatted']
         }),
     ]
 
-    readonly_fields = ('template', 'detail_json_formatted',)
+    readonly_fields = ('to', 'status', 'template',  'created_at', 'detail_json_formatted',)
+
+    def has_add_permission(self, request):
+        return False
+
+    def has_change_permission(self, request, obj=None):
+        return False
+
+    def has_delete_permission(self, request, obj=None):
+        return False
+
 
 admin.site.register(Brand, BrandAdmin)
 admin.site.register(Template, TemplateAdmin)

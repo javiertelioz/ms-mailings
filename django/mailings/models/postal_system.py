@@ -22,10 +22,9 @@ class PostalSystem():
 
         self.__load_template()
 
-    def send(self, to):
+    def send(self, to, bcc = []):
 
         try:
-
             email = EmailMessage(
                 self.__get_message_subject(),
                 self.__get_message_body(),
@@ -35,6 +34,8 @@ class PostalSystem():
 
             email.content_subtype = "html"
             email.send()
+
+            return email
 
         except Exception as e:
             raise ValueError(_("Error to send mail: %s" % str(e)))
@@ -52,7 +53,7 @@ class PostalSystem():
 
     def __get_message_email_from(self):
 
-        return self._template.email_from
+        return self._template.mailing.email
 
     def __get_message_subject(self):
 

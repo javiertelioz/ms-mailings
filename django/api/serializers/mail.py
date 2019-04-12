@@ -10,6 +10,7 @@ class MailSerializer(serializers.ModelSerializer):
         fields = (
             'id',
             'template',
+            'to',
             'params',
             'created_at',
         )
